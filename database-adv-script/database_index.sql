@@ -1,14 +1,25 @@
--- Create index on users.id for JOINs and WHERE conditions
+-- Create indexes on frequently used columns
+
 CREATE INDEX idx_users_id ON users(id);
-
--- Create index on bookings.user_id for JOINs with users
 CREATE INDEX idx_bookings_user_id ON bookings(user_id);
-
--- Create index on bookings.property_id for JOINs with properties
 CREATE INDEX idx_bookings_property_id ON bookings(property_id);
-
--- Create index on properties.id for JOINs
 CREATE INDEX idx_properties_id ON properties(id);
-
--- Create index on reviews.property_id for JOINs with properties
 CREATE INDEX idx_reviews_property_id ON reviews(property_id);
+
+-- Analyze performance of queries using EXPLAIN ANALYZE
+
+-- Before or after indexing, you can measure with:
+EXPLAIN ANALYZE
+SELECT users.name, bookings.start_date
+FROM users
+JOIN bookings ON users.id = bookings.user_id;
+
+EXPLAIN ANALYZE
+SELECT properties.title, bookings.start_date
+FROM properties
+JOIN bookings ON properties.id = bookings.property_id;
+
+EXPLAIN ANALYZE
+SELECT properties.title, reviews.comment
+FROM properties
+LEFT JOIN reviews ON properties.id = reviews.property_id;
