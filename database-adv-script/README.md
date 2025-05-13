@@ -41,3 +41,17 @@ Run the SQL scripts using a MySQL-compatible terminal:
 ```bash
 mysql -u <username> -p < database_name < joins_queries.sql
 mysql -u <username> -p < database_name < subqueries.sql
+
+### aggregations_and_window_functions.sql
+Includes:
+1. **Total Bookings per User**  
+   Aggregates the number of bookings for each user using `COUNT` and `GROUP BY`.
+
+2. **Rank Properties by Booking Count**  
+   Uses a window function `RANK()` to order properties based on the number of bookings they received.
+
+## 🛠️ Usage
+
+Execute the queries in your MySQL client:
+```bash
+mysql -u username -p < database_name < aggregations_and_window_functions.sql
