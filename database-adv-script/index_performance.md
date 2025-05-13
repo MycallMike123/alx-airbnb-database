@@ -1,15 +1,17 @@
-# Index Performance Evaluation
+# Index Performance Analysis
 
 ## Objective
-Improve query performance by creating indexes on frequently used columns in `users`, `bookings`, and `properties` tables.
+
+Improve query speed by creating indexes on frequently accessed columns in the database.
 
 ---
 
-## Indexes Created
+## EXPLAIN Analysis
+
+### Query: Get all bookings with user details
 
 ```sql
-CREATE INDEX idx_users_id ON users(id);
-CREATE INDEX idx_bookings_user_id ON bookings(user_id);
-CREATE INDEX idx_bookings_property_id ON bookings(property_id);
-CREATE INDEX idx_properties_id ON properties(id);
-CREATE INDEX idx_reviews_property_id ON reviews(property_id);
+EXPLAIN ANALYZE
+SELECT users.name, bookings.start_date
+FROM users
+JOIN bookings ON users.id = bookings.user_id;
