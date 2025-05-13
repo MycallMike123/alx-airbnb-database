@@ -25,6 +25,8 @@ FROM
     properties
 LEFT JOIN
     reviews ON properties.id = reviews.property_id;
+ORDER BY
+    properties.id;
 
 -- This version ensures inclusion of users with no bookings and bookings with no user (e.g., due to orphaned data).
 
